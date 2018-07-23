@@ -42,31 +42,30 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.Produc
         holder.imgProducto.setImageResource(listaProductos.get(position).getImgProducto());
         holder.txtNombreProducto.setText(listaProductos.get(position).getNombreProducto());
 
+        LayoutInflater layoutInflater = LayoutInflater.from(context);
+        final View prompView = layoutInflater.inflate(R.layout.dialog_producto,null);
 
         holder.imgProducto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
-                final String nombreProducto = listaProductos.get(position).getNombreProducto();
-                NumberPicker num = new NumberPicker(context);
-                num.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
-                num.setMinValue(0);
-                num.setMaxValue(100);
-                AlertDialog.Builder dialogo = new AlertDialog.Builder(view.getContext());
-                dialogo.setTitle(nombreProducto)
-                        .setView(num)
-                        .setMessage("¿Deseas agregar "+nombreProducto+" a tu lista de compras?")
-                        .setNegativeButton("No",null) // Hará nada al clickear "no"
-                        .setPositiveButton("Agregar", new DialogInterface.OnClickListener() {
+                final AlertDialog.Builder dialogo = new AlertDialog.Builder(context);
+                dialogo.setView(prompView);
+                dialogo.setCancelable(false)
+                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
 
-
-                                Snackbar mensaje = Snackbar
-                                        .make(view,"Ok, se agregó "+nombreProducto.toLowerCase()+" a tu lista!",Snackbar.LENGTH_SHORT);
-                                mensaje.show();
                             }
-                        });
-                dialogo.show();
+                        })
+                        .setNegativeButton("Cancelar",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                                    }
+                                });
+                AlertDialog alertD = dialogo.create();
+                alertD.show();
 
             }
         });
