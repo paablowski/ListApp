@@ -25,7 +25,7 @@ public class Configuraciones extends AppCompatActivity {
         btnBorrarBD.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                db.execSQL("DELETE from listaProductos");
+                db.execSQL("DROP TABLE listaProductos");
                 Snackbar.make(view,"Base de datos borrada!", Toast.LENGTH_SHORT)
                         .show();
             }
