@@ -24,7 +24,6 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.Produc
     public ProductoAdapter(List<Producto> listaProductos, Context context){
         this.listaProductos = listaProductos;
         this.context = context;
-
     }
 
     @Override
@@ -33,12 +32,11 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.Produc
         ProductoViewHolder pvh = new ProductoViewHolder(productView);
 
         return pvh;
-
     }
 
 
     @Override
-    public void onBindViewHolder(ProductoViewHolder holder, final int position){
+    public void onBindViewHolder(final ProductoViewHolder holder, final int position){
         holder.imgProducto.setImageResource(listaProductos.get(position).getImgProducto());
         holder.txtNombreProducto.setText(listaProductos.get(position).getNombreProducto());
 
@@ -51,10 +49,11 @@ public class ProductoAdapter extends RecyclerView.Adapter<ProductoAdapter.Produc
                 final AlertDialog.Builder dialogo = new AlertDialog.Builder(context);
                 dialogo.setView(prompView);
                 dialogo.setCancelable(false)
-                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        .setPositiveButton("Agregar a List", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-
+                                Snackbar mensaje = Snackbar.make(view,"Ok, se agregó a tu lista!",Snackbar.LENGTH_SHORT);
+                                mensaje.show();
                             }
                         })
                         .setNegativeButton("Cancelar",

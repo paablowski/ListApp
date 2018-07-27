@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class ListaSQLite extends SQLiteOpenHelper{
 
-    String sqlCreate = "CREATE TABLE listaProductos (idProducto INTEGER PRIMARY KEY AUTOINCREMENT,imgProducto INTEGER, nombreProducto TEXT, cantidadProducto INTEGER, categoriaProducto INTEGER)";
+    String sqlCreate = "CREATE TABLE listaProductos (idProducto INTEGER PRIMARY KEY AUTOINCREMENT, imgProducto INTEGER, nombreProducto TEXT, cantidadProducto INTEGER, categoriaProducto INTEGER)";
 
     public ListaSQLite(Context context, String nombre,
                        SQLiteDatabase.CursorFactory factory, int version){
